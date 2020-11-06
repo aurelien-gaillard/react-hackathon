@@ -8,6 +8,7 @@ const Homepage = () => {
     const [flyFrom, setFlyFrom] = useState('PRG');
     const [flyTo, setFlyTo] = useState('LGW');
     const [searchData, setSearchData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
     const url = `https://api.skypicker.com/flights?flyFrom=${flyFrom}&to=${flyTo}&dateFrom=18/11/2020&dateTo=12/12/2020&partner=picky&v=3&limit=5`
 
@@ -20,7 +21,12 @@ const Homepage = () => {
         const data = await response.json();
         console.log(data.data);
         setSearchData(data.data)
+        setIsLoading(false)
     }
+    
+    if (isLoading) { 
+        return <h4>Loading...</h4>
+    } 
     
     return (
         <div className="flight-container">
