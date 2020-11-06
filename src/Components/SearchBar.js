@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import './searchbar.css'
 
 const SearchBar = ({
   setFlyFrom,
@@ -29,10 +30,10 @@ const SearchBar = ({
   }
 
   return (
-    <div>
+    <div className='search-container'>
       <form onSubmit={handleSearchForm}>
         <label htmlFor='from'>
-          Flight from:
+          From:
           <input
             type='text'
             name='from'
@@ -41,7 +42,7 @@ const SearchBar = ({
           />
         </label>
         <label htmlFor='to'>
-          Flight to:
+          To:
           <input
             type='text'
             name='to'
@@ -60,13 +61,14 @@ const SearchBar = ({
       </form>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor='from'>Flight from :</label>
+        <label htmlFor='from'>From :</label>
         <select name='from' onChange={(e) => setFrom(e.target.value)}>
           <option value='PRG'>Prague</option>
           <option value='TXL'>Berlin</option>
           <option value='WAW'>Warsaw</option>
           <option value='PED'>Pardubice</option>
         </select>
+        <label htmlFor='to'>To :</label>
         <select name='to' onChange={(e) => setTo(e.target.value)}>
           <option value='VLC'>Valencia</option>
           <option value='BCN'>Barcelona</option>

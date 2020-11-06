@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import FlightList from './Components/FlightList'
 import SearchBar from './Components/SearchBar'
+import './homepage.css'
+import Navbar from './Components/Navbar'
 
 const Homepage = () => {
   const [flyFrom, setFlyFrom] = useState('PRG')
@@ -58,6 +60,7 @@ const Homepage = () => {
   }, [codeFrom, codeTo, isDirectFlight])
   console.log(flyTo)
   console.log(flyFrom)
+
   if (isLoading) {
     return <h4>Loading...</h4>
   }
@@ -79,22 +82,26 @@ const Homepage = () => {
 
   return (
     <div className='container'>
-      <SearchBar
-        setFlyTo={setFlyTo}
-        setFlyFrom={setFlyFrom}
-        setIsDirectFlight={setIsDirectFlight}
-        findLocationFrom={findLocationFrom}
-        findLocationTo={findLocationTo}
-      />
-      {currentPage !== 0 && (
-        <button onClick={() => setCurrentPage(currentPage - 1)}>
-          Previous page
-        </button>
-      )}
-      {searchData.length > currentPage * 5 + 5 && (
-        <button onClick={() => handleNextPage()}>Next page</button>
-      )}
-
+      <Navbar />
+      <main>
+        <h1>Plan tomorrow's adventure today</h1>
+        <p>Search the safest destinations. Book with flexibility</p>
+        <SearchBar
+          setFlyTo={setFlyTo}
+          setFlyFrom={setFlyFrom}
+          setIsDirectFlight={setIsDirectFlight}
+          findLocationFrom={findLocationFrom}
+          findLocationTo={findLocationTo}
+        />
+        {currentPage !== 0 && (
+          <button onClick={() => setCurrentPage(currentPage - 1)}>
+            Previous page
+          </button>
+        )}
+        {searchData.length > currentPage * 5 + 5 && (
+          <button onClick={() => handleNextPage()}>Next page</button>
+        )}
+      </main>
       <FlightList
         searchData={searchData.slice(currentPage * 5, currentPage * 5 + 5)}
       />

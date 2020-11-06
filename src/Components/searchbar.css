@@ -1,0 +1,20 @@
+.search-container {
+  background: #ffffff;
+  margin: 2em;
+  border-radius: 5px;
+  color: black;
+}
+
+form {
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid black;
+}
+
+button {
+  color: whitesmoke;
+  background-color: teal;
+  border: 0;
+  border-radius: 2px;
+  padding: 0.5em;
+}
