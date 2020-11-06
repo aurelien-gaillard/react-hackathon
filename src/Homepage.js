@@ -11,16 +11,16 @@ const Homepage = () => {
   const [isDirectFlight, setIsDirectFlight] = useState(false)
   const [searchData, setSearchData] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [currentPage, setCurrentPage] = useState(0)
   const [codeFrom, setCodeFrom] = useState('')
   const [codeTo, setCodeTo] = useState('')
+  const [isCodeUpdated, setIsCodeUpdated] = useState(false)
+  const [currentPage, setCurrentPage] = useState(0)
 
   const url = `https://api.skypicker.com/flights?flyFrom=${flyFrom}&to=${flyTo}&dateFrom=18/11/2020&dateTo=1/12/2020&partner=picky&v=3&limit=30${
     isDirectFlight ? '&max_stopovers=0' : ''
   }`
 
   useEffect(() => {
-    console.log('hello')
     setSearchData([])
     fetchData()
   }, [flyFrom, flyTo, isDirectFlight])
@@ -45,18 +45,19 @@ const Homepage = () => {
     setCodeFrom(data.locations[0].id)
 
     url = `https://api.skypicker.com/locations?term=${to}&location_types=airport&limit=10&active_only=true&sort=name`
-
     const response2 = await fetch(url)
     const data2 = await response2.json()
     setCodeTo(data2.locations[0].id)
+
+    setIsCodeUpdated(true)
   }
 
   useEffect(() => {
-    console.log('hi')
+    setIsCodeUpdated(false)
     setFlyFrom(codeFrom)
     setFlyTo(codeTo)
     //setIsDirectFlight(isDirect)
-  }, [codeFrom, codeTo])
+  }, [isCodeUpdated])
 
   return (
     <div className='container'>
