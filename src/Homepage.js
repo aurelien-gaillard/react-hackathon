@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import FlightList from './Components/FlightList'
 import SearchBar from './Components/SearchBar'
+import SelectBar from './Components/SelectBar'
 import './homepage.css'
 import Navbar from './Components/Navbar'
 
@@ -37,19 +38,17 @@ const Homepage = () => {
     console.log(currentPage)
   }
 
-  const findLocationFrom = async (location) => {
-    const url = `https://api.skypicker.com/locations?term=${location}&location_types=airport&limit=1&active_only=true&sort=rank`
-
+  const findLocations = async (from, to) => {
+    let url = `https://api.skypicker.com/locations?term=${from}&location_types=airport&limit=1&active_only=true&sort=rank`
     const response = await fetch(url)
     const data = await response.json()
     setCodeFrom(data.locations[0].id)
-  }
-  const findLocationTo = async (location) => {
-    const url = `https://api.skypicker.com/locations?term=${location}&location_types=airport&limit=10&active_only=true&sort=name`
 
-    const response = await fetch(url)
-    const data = await response.json()
-    setCodeTo(data.locations[0].id)
+    url = `https://api.skypicker.com/locations?term=${to}&location_types=airport&limit=10&active_only=true&sort=name`
+
+    const response2 = await fetch(url)
+    const data2 = await response2.json()
+    setCodeTo(data2.locations[0].id)
   }
 
   useEffect(() => {
@@ -58,27 +57,6 @@ const Homepage = () => {
     setFlyTo(codeTo)
     //setIsDirectFlight(isDirect)
   }, [codeFrom, codeTo])
-  console.log(flyTo)
-  console.log(flyFrom)
-
-  if (isLoading) {
-    return <h4>Loading...</h4>
-  }
-
-  if (searchData.length === 0) {
-    return (
-      <div>
-        <SearchBar
-          setFlyTo={setFlyTo}
-          setFlyFrom={setFlyFrom}
-          setIsDirectFlight={setIsDirectFlight}
-          findLocationFrom={findLocationFrom}
-          findLocationTo={findLocationTo}
-        />
-        <h4>No flights found from this search</h4>
-      </div>
-    )
-  }
 
   return (
     <div className='container'>
@@ -87,31 +65,40 @@ const Homepage = () => {
         <h1>Plan tomorrow's adventure today</h1>
         <h4>Search the safest destinations. Book with flexibility</h4>
         <SearchBar
+          setIsDirectFlight={setIsDirectFlight}
+          findLocations={findLocations}
+        />
+        <SelectBar
           setFlyTo={setFlyTo}
           setFlyFrom={setFlyFrom}
           setIsDirectFlight={setIsDirectFlight}
-          findLocationFrom={findLocationFrom}
-          findLocationTo={findLocationTo}
         />
       </main>
-      <div className='pagination-btns'>
-        {currentPage !== 0 && (
-          <button
-            className='pagination-btn'
-            onClick={() => setCurrentPage(currentPage - 1)}
-          >
-            Previous page
-          </button>
-        )}
-        {searchData.length > currentPage * 5 + 5 && (
-          <button className='pagination-btn' onClick={() => handleNextPage()}>
-            Next page
-          </button>
-        )}
-      </div>
-      <FlightList
-        searchData={searchData.slice(currentPage * 5, currentPage * 5 + 5)}
-      />
+
+      {isLoading ? (
+        <h4>Loading...</h4>
+      ) : searchData.length === 0 ? (
+        <h4>No flights found from this search</h4>
+      ) : (
+        <div className='pagination-btns'>
+          {currentPage !== 0 && (
+            <button
+              className='pagination-btn'
+              onClick={() => setCurrentPage(currentPage - 1)}
+            >
+              Previous page
+            </button>
+          )}
+          {searchData.length > currentPage * 5 + 5 && (
+            <button className='pagination-btn' onClick={() => handleNextPage()}>
+              Next page
+            </button>
+          )}
+          <FlightList
+            searchData={searchData.slice(currentPage * 5, currentPage * 5 + 5)}
+          />
+        </div>
+      )}
     </div>
   )
 }
