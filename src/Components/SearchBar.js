@@ -32,7 +32,7 @@ const SearchBar = ({
   return (
     <div className='search-container'>
       <form onSubmit={handleSearchForm}>
-        <label htmlFor='from'>
+        <label className='input' htmlFor='from'>
           From:
           <input
             type='text'
@@ -41,7 +41,7 @@ const SearchBar = ({
             onChange={(e) => setValueFrom(e.target.value)}
           />
         </label>
-        <label htmlFor='to'>
+        <label className='input' htmlFor='to'>
           To:
           <input
             type='text'
@@ -61,22 +61,26 @@ const SearchBar = ({
       </form>
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor='from'>From :</label>
-        <select name='from' onChange={(e) => setFrom(e.target.value)}>
-          <option value='PRG'>Prague</option>
-          <option value='TXL'>Berlin</option>
-          <option value='WAW'>Warsaw</option>
-          <option value='PED'>Pardubice</option>
-        </select>
-        <label htmlFor='to'>To :</label>
-        <select name='to' onChange={(e) => setTo(e.target.value)}>
-          <option value='VLC'>Valencia</option>
-          <option value='BCN'>Barcelona</option>
-          <option value='MAD'>Madrid</option>
-          <option value='MXP'>Milano</option>
-          <option value='ATH'>Athens</option>
-          <option value='LGW'>London</option>
-        </select>
+        <label htmlFor='from' className='input'>
+          From :
+          <select name='from' onChange={(e) => setFrom(e.target.value)}>
+            <option value='PRG'>Prague</option>
+            <option value='TXL'>Berlin</option>
+            <option value='WAW'>Warsaw</option>
+            <option value='PED'>Pardubice</option>
+          </select>
+        </label>
+        <label htmlFor='to' className='input'>
+          To :
+          <select name='to' onChange={(e) => setTo(e.target.value)}>
+            <option value='VLC'>Valencia</option>
+            <option value='BCN'>Barcelona</option>
+            <option value='MAD'>Madrid</option>
+            <option value='MXP'>Milano</option>
+            <option value='ATH'>Athens</option>
+            <option value='LGW'>London</option>
+          </select>
+        </label>
         <label htmlFor='directFlight'>Direct Flight only</label>
         <input
           name='directFlight'

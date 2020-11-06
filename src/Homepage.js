@@ -85,7 +85,7 @@ const Homepage = () => {
       <Navbar />
       <main>
         <h1>Plan tomorrow's adventure today</h1>
-        <p>Search the safest destinations. Book with flexibility</p>
+        <h4>Search the safest destinations. Book with flexibility</h4>
         <SearchBar
           setFlyTo={setFlyTo}
           setFlyFrom={setFlyFrom}
@@ -93,15 +93,15 @@ const Homepage = () => {
           findLocationFrom={findLocationFrom}
           findLocationTo={findLocationTo}
         />
-        {currentPage !== 0 && (
-          <button onClick={() => setCurrentPage(currentPage - 1)}>
-            Previous page
-          </button>
-        )}
-        {searchData.length > currentPage * 5 + 5 && (
-          <button onClick={() => handleNextPage()}>Next page</button>
-        )}
       </main>
+      {currentPage !== 0 && (
+        <button onClick={() => setCurrentPage(currentPage - 1)}>
+          Previous page
+        </button>
+      )}
+      {searchData.length > currentPage * 5 + 5 && (
+        <button onClick={() => handleNextPage()}>Next page</button>
+      )}
       <FlightList
         searchData={searchData.slice(currentPage * 5, currentPage * 5 + 5)}
       />

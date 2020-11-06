@@ -6,15 +6,31 @@
 }
 
 form {
-  margin: 1em;
-  padding: 1em;
+  margin: 0.2em;
+  padding: 0.2em 1em;
   border: 1px solid black;
+}
+
+.input {
+  border: 1px solid grey;
+  border-radius: 2px;
+  padding: 4px;
+  margin: 1em;
+}
+
+input {
+  border: 0;
+}
+
+select {
+  border: 0;
 }
 
 button {
   color: whitesmoke;
-  background-color: teal;
+  background-color: #009882;
   border: 0;
   border-radius: 2px;
   padding: 0.5em;
+  margin: 4px;
 }
