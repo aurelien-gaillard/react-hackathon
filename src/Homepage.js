@@ -7,14 +7,17 @@ const Homepage = () => {
   const [flyTo, setFlyTo] = useState('LGW')
   const [isDirectFlight, setIsDirectFlight] = useState(false)
   const [searchData, setSearchData] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [currentPage, setCurrentPage] = useState(0);
+  const [isLoading, setIsLoading] = useState(true)
+  const [currentPage, setCurrentPage] = useState(0)
+  const [codeFrom, setCodeFrom] = useState('')
+  const [codeTo, setCodeTo] = useState('')
 
   const url = `https://api.skypicker.com/flights?flyFrom=${flyFrom}&to=${flyTo}&dateFrom=18/11/2020&dateTo=1/12/2020&partner=picky&v=3&limit=30${
     isDirectFlight ? '&max_stopovers=0' : ''
   }`
 
   useEffect(() => {
+    console.log('hello')
     setSearchData([])
     fetchData()
   }, [flyFrom, flyTo, isDirectFlight])
@@ -25,13 +28,36 @@ const Homepage = () => {
     const data = await response.json()
     setSearchData(data.data)
     setIsLoading(false)
-    }
-    
-    const handleNextPage = () => {
-        setCurrentPage(currentPage + 1)
-        console.log(currentPage);
-    }
+  }
 
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1)
+    console.log(currentPage)
+  }
+
+  const findLocationFrom = async (location) => {
+    const url = `https://api.skypicker.com/locations?term=${location}&location_types=airport&limit=1&active_only=true&sort=rank`
+
+    const response = await fetch(url)
+    const data = await response.json()
+    setCodeFrom(data.locations[0].id)
+  }
+  const findLocationTo = async (location) => {
+    const url = `https://api.skypicker.com/locations?term=${location}&location_types=airport&limit=10&active_only=true&sort=name`
+
+    const response = await fetch(url)
+    const data = await response.json()
+    setCodeTo(data.locations[0].id)
+  }
+
+  useEffect(() => {
+    console.log('hi')
+    setFlyFrom(codeFrom)
+    setFlyTo(codeTo)
+    //setIsDirectFlight(isDirect)
+  }, [codeFrom, codeTo, isDirectFlight])
+  console.log(flyTo)
+  console.log(flyFrom)
   if (isLoading) {
     return <h4>Loading...</h4>
   }
@@ -43,25 +69,36 @@ const Homepage = () => {
           setFlyTo={setFlyTo}
           setFlyFrom={setFlyFrom}
           setIsDirectFlight={setIsDirectFlight}
+          findLocationFrom={findLocationFrom}
+          findLocationTo={findLocationTo}
         />
         <h4>No flights found from this search</h4>
       </div>
     )
-    }
+  }
 
-  console.log(searchData.length)
   return (
     <div className='container'>
       <SearchBar
         setFlyTo={setFlyTo}
         setFlyFrom={setFlyFrom}
         setIsDirectFlight={setIsDirectFlight}
-          />
-          {(currentPage !== 0) && <button onClick={() => setCurrentPage(currentPage - 1)}>Previous page</button>}
-          {(searchData.length > currentPage*5 + 5) && <button onClick={() =>  handleNextPage() }>Next page</button> }
-          
-      <FlightList searchData={searchData.slice(currentPage*5, currentPage*5+5)} />
-      </div>
+        findLocationFrom={findLocationFrom}
+        findLocationTo={findLocationTo}
+      />
+      {currentPage !== 0 && (
+        <button onClick={() => setCurrentPage(currentPage - 1)}>
+          Previous page
+        </button>
+      )}
+      {searchData.length > currentPage * 5 + 5 && (
+        <button onClick={() => handleNextPage()}>Next page</button>
+      )}
+
+      <FlightList
+        searchData={searchData.slice(currentPage * 5, currentPage * 5 + 5)}
+      />
+    </div>
   )
 }
 
