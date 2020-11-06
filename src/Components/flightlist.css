@@ -1,0 +1,44 @@
+.flight-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.flight-post {
+  box-shadow: 10px 10px 40px grey;
+  width: 250px;
+  margin: 1em;
+  padding: 1em;
+  background-color: #ececec;
+}
+
+.flight-cities {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.flight-info {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 1em;
+  padding: 1em;
+}
+
+span {
+  font-weight: normal;
+  font-size: 0.9em;
+}
+h6 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 0.9em;
+  margin: 0.3em;
+}
+h3 {
+  margin: 0;
+}
