@@ -6,7 +6,7 @@ const FlightList = ({ searchData }) => {
     <div>
       {searchData &&
         searchData.map((flight) => {
-          const { cityFrom, cityTo, dTime, aTime, fly_duration, price } = flight
+          const { cityFrom, cityTo, dTime, aTime, fly_duration, price, route } = flight
           return (
             <div key={flight.id} className='fligh-post'>
               <h3>From: {cityFrom}</h3>
@@ -28,7 +28,8 @@ const FlightList = ({ searchData }) => {
                 {DateTime.fromMillis(aTime * 1000).toFormat('hh:mm')}
               </h4>
               <h4>Fly duration: {fly_duration}</h4>
-              <h4>Price: {price} €</h4>
+                  <h4>Price: {price} €</h4>
+                  <h4>Stopovers: {route.length -1 }</h4>
             </div>
           )
         })}
