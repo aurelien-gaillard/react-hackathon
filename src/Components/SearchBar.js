@@ -26,7 +26,7 @@ const SearchBar = ({
     e.preventDefault()
     findLocationFrom(valueFrom)
     findLocationTo(valueTo)
-    setIsDirectFlight(isDirectSearch)
+    setIsDirectSearch(isDirectSearch)
   }
 
   return (

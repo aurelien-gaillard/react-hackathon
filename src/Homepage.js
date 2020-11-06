@@ -57,7 +57,7 @@ const Homepage = () => {
     setFlyFrom(codeFrom)
     setFlyTo(codeTo)
     //setIsDirectFlight(isDirect)
-  }, [codeFrom, codeTo, isDirectFlight])
+  }, [codeFrom, codeTo])
   console.log(flyTo)
   console.log(flyFrom)
 
@@ -94,15 +94,20 @@ const Homepage = () => {
           findLocationTo={findLocationTo}
         />
       </main>
-      <div className="pagination-btns">
-          {currentPage !== 0 && (
-            <button className='pagination-btn' onClick={() => setCurrentPage(currentPage - 1)}>
-              Previous page
-            </button>
-          )}
-          {searchData.length > currentPage * 5 + 5 && (
-            <button className='pagination-btn' onClick={() => handleNextPage()}>Next page</button>
-          )}
+      <div className='pagination-btns'>
+        {currentPage !== 0 && (
+          <button
+            className='pagination-btn'
+            onClick={() => setCurrentPage(currentPage - 1)}
+          >
+            Previous page
+          </button>
+        )}
+        {searchData.length > currentPage * 5 + 5 && (
+          <button className='pagination-btn' onClick={() => handleNextPage()}>
+            Next page
+          </button>
+        )}
       </div>
       <FlightList
         searchData={searchData.slice(currentPage * 5, currentPage * 5 + 5)}
