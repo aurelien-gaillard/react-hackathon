@@ -1,14 +1,15 @@
 .search-container {
   background: #ffffff;
-  margin: 2em;
+  margin: 2em auto;
   border-radius: 5px;
   color: black;
+  padding: 1em;
+  width: 800px;
 }
 
 form {
   margin: 0.2em;
   padding: 0.2em 1em;
-  border: 1px solid black;
 }
 
 .input {
@@ -20,6 +21,11 @@ form {
 
 input {
   border: 0;
+  margin-left: 0.1em;
+}
+
+input:focus {
+  outline: none;
 }
 
 select {
@@ -33,4 +39,8 @@ button {
   border-radius: 2px;
   padding: 0.5em;
   margin: 4px;
+}
+
+label {
+  margin-right: 0.1em;
 }

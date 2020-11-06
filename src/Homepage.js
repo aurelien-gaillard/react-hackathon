@@ -94,14 +94,16 @@ const Homepage = () => {
           findLocationTo={findLocationTo}
         />
       </main>
-      {currentPage !== 0 && (
-        <button onClick={() => setCurrentPage(currentPage - 1)}>
-          Previous page
-        </button>
-      )}
-      {searchData.length > currentPage * 5 + 5 && (
-        <button onClick={() => handleNextPage()}>Next page</button>
-      )}
+      <div className="pagination-btns">
+          {currentPage !== 0 && (
+            <button className='pagination-btn' onClick={() => setCurrentPage(currentPage - 1)}>
+              Previous page
+            </button>
+          )}
+          {searchData.length > currentPage * 5 + 5 && (
+            <button className='pagination-btn' onClick={() => handleNextPage()}>Next page</button>
+          )}
+      </div>
       <FlightList
         searchData={searchData.slice(currentPage * 5, currentPage * 5 + 5)}
       />
