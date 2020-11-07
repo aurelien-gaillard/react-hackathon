@@ -2,9 +2,12 @@ import React from 'react'
 import { DateTime } from 'luxon'
 import './flightlist.css'
 
+
+
 const FlightList = ({ searchData }) => {
-  return (
-    <div className="flight-list">
+  return ( 
+    <div
+      className="flight-list">
       {searchData &&
         searchData.map((flight) => {
           const {
@@ -17,7 +20,8 @@ const FlightList = ({ searchData }) => {
             route,
           } = flight
           return (
-            <div key={flight.id} className='flight-post'>
+            <div key={flight.id} className='flight-post' >
+              
               <div className="flight-cities">
                   <h3>From:<br/> <span>{cityFrom}</span></h3>
                   <h3>To:<br/> <span>{cityTo}</span></h3>
