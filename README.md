@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Hackathon React - Coding Bootcamp Praha
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Assignment
 
-In the project directory, you can run:
+Create an application that will fetch the top 5 flights from Prague to Valencia (Spain) departing the next day.
 
-### `npm start`
+Use REST API documented here: https://docs.kiwi.com/#flights
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### `Milestone 1`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- When the application is displayed, call REST API to fetch flights
+- show some loading indicator that request for available flights is being made
+- You should always display at least time of departure and arrival in local time, name of the origin and departure & price for the flight
 
-### `npm test`
+### `Milestone 2`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Enable user to select a destination from a dropdown with "Valencia", "Barcelona", "Madrid", "Milano" and "Athens" as possible options
+- Enable user to select an origin (place of the departure) from a dropdown with "Prague", "Berlin", "Warsaw" and "Pardubice" as possible options
+- show info that there are no flights available if no flights are found on the selected route.
 
-### `npm run build`
+### `Milestone 3`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- add checkbox "direct flights only" - if a user of the application check it, then search only for direct flights
+- show number of stopovers in the results - e.g. flying to Valencia from Prague with a stopover in Frankfurt means 1 stopover, direct flight to Valencia from Prague has 0 stopovers.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `Milestone 4`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- Enable user to fetch more than 5 flight - add pagination
+- don't show "show more" button, if there are no more results
 
-### `npm run eject`
+### `Milestone 5`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Enable to search for the flight to any destination by adding a search field.
+- Note you might need to fetch location first: https://docs.kiwi.com/#locations
