@@ -1,6 +1,7 @@
 # Hackathon React - Coding Bootcamp Praha
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The final result is hosted [HERE](https://musing-ride-b6b9a1.netlify.app/).
+Website realized in pair coding from 09h to 16h during Hackathon of Coding Bootcamp Praha.
 
 ## Assignment
 
